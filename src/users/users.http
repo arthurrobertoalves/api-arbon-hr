@@ -1,0 +1,35 @@
+### Create user
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "admin",
+  "email": "admin@email.com",
+  "password": "password123",
+  "role": "ADMIN"
+}
+
+###
+
+### Get all users
+GET http://localhost:3000/users
+
+###
+
+### Get user by id
+GET http://localhost:3000/users/cml07v19r00021gio1dprax3v
+
+###
+
+### Update user
+PATCH http://localhost:3000/users/cml07v19r00021gio1dprax3v
+Content-Type: application/json
+
+{
+ "password": "novaSenha123"
+}
+
+###
+
+### Delete user
+DELETE http://localhost:3000/users/cml07v19r00021gio1dprax3v
