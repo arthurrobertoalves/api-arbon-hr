@@ -32,4 +32,4 @@ Content-Type: application/json
 ###
 
 ### Delete user
-DELETE http://localhost:3000/users/cml07v19r00021gio1dprax3v
+DELETE http://localhost:3000/users/cml07v19r00021gio1dprax3v  

@@ -2,6 +2,7 @@ services:
   db:
     image: postgres:18
     container_name: ${POSTGRES_CONTAINER_NAME}
+    restart: never
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
