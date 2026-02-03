@@ -2,9 +2,10 @@
 POST http://localhost:3000/users
 Content-Type: application/json
 
+
 {
-  "name": "teste",
-  "email": "teste@email.com",
+  "name": "email",
+  "email": "email@email.com",
   "password": "password123",
   "role": "ADMIN"
 }
@@ -13,6 +14,7 @@ Content-Type: application/json
 
 ### Get all users
 GET http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZW1haWwiLCJlbWFpbCI6ImVtYWlsQGVtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiIsInN1YiI6ImNtbDV4ZTA1ZjAwMDAwMW1uZ2txNjNrOGIiLCJpYXQiOjE3NzAwODI0ODgsImV4cCI6MTc3MDE2ODg4OH0.75bgCxfgIZp9GFeNnMQqH_KiBv0ifaYHvlQpAqc84YU
 
 ###
 
