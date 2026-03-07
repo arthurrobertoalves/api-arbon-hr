@@ -13,27 +13,18 @@ export class AuthService {
 
   async login(loginDto: LoginDto) {
     const user = await this.prisma.user.findUnique({
-      where: { email: loginDto.email },
+      where: { code: loginDto.code },
     });
 
     if (!user) {
       throw new NotFoundException('Invalid credentials');
     }
 
-    const passwordMacthes = await bcrypt.compare(
-      loginDto.password,
-      user.password,
-    );
-
-    if (!passwordMacthes) {
-      throw new NotFoundException('Invalid credentials');
-    }
 
     const token = this.jwtService.sign({
-      name: user.name,
-      email: user.email,
+      id: user.id,
       role: user.role,
-      sub: user.id,
+      code: user.code,
     });
     return { access_token: token };
   }

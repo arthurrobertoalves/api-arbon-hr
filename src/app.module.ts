@@ -3,7 +3,6 @@ import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
-import { RecipesModule } from './recipes/recipes.module';
 
 @Module({
   imports: [
@@ -14,7 +13,6 @@ import { RecipesModule } from './recipes/recipes.module';
       isGlobal: true,
       envFilePath: ['.env.local'],
     }),
-    RecipesModule,
   ],
   controllers: [],
   providers: [],

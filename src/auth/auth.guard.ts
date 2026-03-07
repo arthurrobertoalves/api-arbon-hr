@@ -28,8 +28,7 @@ export class AuthGuard implements CanActivate {
 
     try {
       const payload = this.jwtService.verify<{
-        name: string;
-        email: string;
+        code: string;
         role: UserRole;
         sub: string;
       }>(token, { algorithms: ['HS256'] });
@@ -40,7 +39,7 @@ export class AuthGuard implements CanActivate {
         throw new UnauthorizedException('User not found');
       }
       request.user = user;
-      return true;
+      return true;  
     } catch (e) {
       console.log();
       throw new UnauthorizedException('Invalid token', { cause: e });

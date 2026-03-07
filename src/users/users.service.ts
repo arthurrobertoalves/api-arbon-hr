@@ -14,17 +14,14 @@ export class UsersService {
   
   async createUser(createUserDto: CreateUserDto) {
     try {
-      const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
       return await this.prisma.user.create({
         data: {
           ...createUserDto,
-          password: hashedPassword,
         },
         select: {
-          id: true,
-          name: true,
-          email: true,
+           id: true,
           role: true,
+          code: true,
         },
       });
     } catch (error: any) {
@@ -39,10 +36,9 @@ export class UsersService {
   async findAll() {
     return await this.prisma.user.findMany({
       select: {
-        id: true,
-        name: true,
-        email: true,
-        role: true,
+            id: true,
+          role: true,
+          code: true,
       },
     });
   }
@@ -51,10 +47,9 @@ export class UsersService {
     const user = await this.prisma.user.findUnique({
       where: { id: id },
       select: {
-        id: true,
-        name: true,
-        email: true,
-        role: true,
+           id: true,
+          role: true,
+          code: true,
       },
     });
 
@@ -68,19 +63,14 @@ export class UsersService {
   async update(id: string, updateUserDto: UpdateUserDto) {
     const data: Partial<UpdateUserDto> = { ...updateUserDto };
 
-    if (updateUserDto.password) {
-      data.password = await bcrypt.hash(updateUserDto.password, 10);
-    }
-
     try {
       return await this.prisma.user.update({
         where: { id: id },
         data,
         select: {
           id: true,
-          name: true,
-          email: true,
           role: true,
+          code: true,
         },
       });
     } catch {
@@ -94,9 +84,8 @@ export class UsersService {
         where: { id },
         select: {
           id: true,
-          name: true,
-          email: true,
           role: true,
+          code: true,
         },
       });
     } catch {
