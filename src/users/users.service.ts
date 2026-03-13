@@ -11,22 +11,20 @@ import * as bcrypt from 'bcrypt';
 @Injectable()
 export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
-  
+
   async createUser(createUserDto: CreateUserDto) {
     try {
       return await this.prisma.user.create({
         data: {
-          ...createUserDto,
+          code: createUserDto.code,
+          role: createUserDto.role,
+          companyId: createUserDto.companyId,
+          },
         },
-        select: {
-           id: true,
-          role: true,
-          code: true,
-        },
-      });
+      );
     } catch (error: any) {
-      if (error.code === 'P2002') {
-        throw new ConflictException('Email already exists');
+      if (error?.code === 'P2002') {
+        throw new ConflictException('ID/Code Conflict');
       }
 
       throw error;
@@ -36,9 +34,9 @@ export class UsersService {
   async findAll() {
     return await this.prisma.user.findMany({
       select: {
-            id: true,
-          role: true,
-          code: true,
+        id: true,
+        role: true,
+        code: true,
       },
     });
   }
@@ -47,9 +45,9 @@ export class UsersService {
     const user = await this.prisma.user.findUnique({
       where: { id: id },
       select: {
-           id: true,
-          role: true,
-          code: true,
+        id: true,
+        role: true,
+        code: true,
       },
     });
 
@@ -65,8 +63,14 @@ export class UsersService {
 
     try {
       return await this.prisma.user.update({
-        where: { id: id },
-        data,
+        where: { id },
+        data: {
+          role: data.role,
+          code: data.code,
+          company: {
+            connect: { id: data.companyId },
+          },
+        },
         select: {
           id: true,
           role: true,

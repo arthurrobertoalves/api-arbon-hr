@@ -13,10 +13,23 @@ enum UserRole {
   CUSTOMER
 }
 
+enum Sector {
+  TECHNOLOGY
+  FINANCE
+  HEALTHCARE
+  EDUCATION
+  RETAIL
+  INDUSTRY
+}
+
 model Company {
   id   String @id @default(cuid())
   name String
-
+  cnpj String 
+  email String
+  phone String?
+  site String?
+  sector Sector
   users        User[]
   participants Participant[]
 

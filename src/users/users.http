@@ -1,0 +1,22 @@
+@baseUrl = http://localhost:3001
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbWxkc3ZsYzAwMDBla2lvZmVranYybDgiLCJyb2xlIjoiQURNSU4iLCJjb2RlIjoiQURNSU4xMjMiLCJpYXQiOjE3NzMzNzAyMzcsImV4cCI6MTc3MzQ1NjYzN30.PgBUJDNE_S8uBpRG1aHWQe8hTmKXAO3QU5_sIqoLby4
+
+
+### Criar empresa
+POST {{baseUrl}}/users
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "code": "BABABA",
+  "role": "CUSTOMER",
+  "companyId": "cmmoaxtwn0000gcio5dt2pk71"
+}
+
+### Listar empresas
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "code": "ADMIN123"
+}

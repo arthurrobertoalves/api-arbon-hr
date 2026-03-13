@@ -1,0 +1,44 @@
+@baseUrl = http://localhost:3001
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbWxkc3ZsYzAwMDBla2lvZmVranYybDgiLCJyb2xlIjoiQURNSU4iLCJjb2RlIjoiQURNSU4xMjMiLCJpYXQiOjE3NzMzNzM5MTcsImV4cCI6MTc3MzQ2MDMxN30.Na_03UU_x1HjvP2dOr056VGs3mLFkXxJ1qlgSL3c1U8
+
+
+### Criar empresa
+POST {{baseUrl}}/company
+Content-Type: application/json
+Cookie: token={{token}}
+
+{
+  "name": "Nubank",
+  "cnpj": "00.000.000/0001-00",
+  "email": "contato@nubank.com",
+  "phone": "+55 11 99999-9999",
+  "site": "https://nubank.com.br",
+  "sector": "FINANCE"
+}
+
+
+### Listar empresas
+GET {{baseUrl}}/company
+Content-Type: application/json
+Cookie: token={{token}}
+
+
+### Buscar empresa por id
+GET {{baseUrl}}/companies/COMPANY_ID
+Cookie: token={{token}}
+
+
+### Atualizar empresa
+PATCH {{baseUrl}}/companies/COMPANY_ID
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Nubank Atualizado",
+  "sector": "TECHNOLOGY"
+}
+
+
+### Deletar empresa
+DELETE {{baseUrl}}/companies/COMPANY_ID
+Authorization: Bearer {{token}}

@@ -16,33 +16,37 @@ export class AuthGuard implements CanActivate {
     private prisma: PrismaService,
   ) {}
 
-   async canActivate(
-    context: ExecutionContext,
-  ): Promise<boolean> {
-    const request: Request = context.switchToHttp().getRequest();
-    const token = request.headers['authorization']?.split(' ')[1];
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    const request = context.switchToHttp().getRequest<Request>();
 
+    const token = request.cookies?.token;
+  
     if (!token) {
       throw new UnauthorizedException('No token provided');
     }
 
     try {
       const payload = this.jwtService.verify<{
-        code: string;
+        id: string;
         role: UserRole;
-        sub: string;
-      }>(token, { algorithms: ['HS256'] });
-      const user = await this.prisma.user.findUnique({
-        where: { id: payload.sub },
+        code: string;
+      }>(token, {
+        secret: process.env.JWT_SECRET,
       });
+
+      const user = await this.prisma.user.findUnique({
+        where: { id: payload.id },
+      });
+
       if (!user) {
         throw new UnauthorizedException('User not found');
       }
-      request.user = user;
-      return true;  
+
+      (request as any).user = user;
+
+      return true;
     } catch (e) {
-      console.log();
-      throw new UnauthorizedException('Invalid token', { cause: e });
+      throw new UnauthorizedException('Invalid token');
     }
   }
 }
