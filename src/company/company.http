@@ -1,21 +1,17 @@
 @baseUrl = http://localhost:3001
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbWxkc3ZsYzAwMDBla2lvZmVranYybDgiLCJyb2xlIjoiQURNSU4iLCJjb2RlIjoiQURNSU4xMjMiLCJpYXQiOjE3NzMzNzM5MTcsImV4cCI6MTc3MzQ2MDMxN30.Na_03UU_x1HjvP2dOr056VGs3mLFkXxJ1qlgSL3c1U8
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbWxkc3ZsYzAwMDBla2lvZmVranYybDgiLCJyb2xlIjoiQURNSU4iLCJjb2RlIjoiQURNSU4xMjMiLCJpYXQiOjE3NzM3MDgzODUsImV4cCI6MTc3Mzc5NDc4NX0.vTFZ2wcnvt4TjiGID7fyhxCAa0CHxCYLcO3fAp8ppzM
 
 
 ### Criar empresa
-POST {{baseUrl}}/company
+POST  {{baseUrl}}/users
 Content-Type: application/json
 Cookie: token={{token}}
 
 {
-  "name": "Nubank",
-  "cnpj": "00.000.000/0001-00",
-  "email": "contato@nubank.com",
-  "phone": "+55 11 99999-9999",
-  "site": "https://nubank.com.br",
-  "sector": "FINANCE"
+  "code": "ADMIN123",
+  "name": "Arthur Roberto",
+  "role": "ADMIN"
 }
-
 
 ### Listar empresas
 GET {{baseUrl}}/company

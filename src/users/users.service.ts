@@ -18,10 +18,10 @@ export class UsersService {
         data: {
           code: createUserDto.code,
           role: createUserDto.role,
+          name: createUserDto.name,
           companyId: createUserDto.companyId,
-          },
         },
-      );
+      });
     } catch (error: any) {
       if (error?.code === 'P2002') {
         throw new ConflictException('ID/Code Conflict');
@@ -37,6 +37,7 @@ export class UsersService {
         id: true,
         role: true,
         code: true,
+        name: true,
       },
     });
   }
@@ -48,11 +49,29 @@ export class UsersService {
         id: true,
         role: true,
         code: true,
+        name: true,
       },
     });
 
     if (!user) {
       throw new NotFoundException('User not found');
+    }
+
+    return user;
+  }
+
+  async findMe(id: string) {
+    const user = await this.prisma.user.findUnique({
+      where: { id: id },
+      select: {
+        id: true,
+        name: true,
+        role: true
+      },
+    });
+
+    if (!user) {
+      throw new Error('Usuário não encontrado');
     }
 
     return user;

@@ -4,5 +4,5 @@ export class CreateUserDto {
   role: UserRole;
   code: string;
   companyId?: string;
-  company?: string;
+  name: string;
 }

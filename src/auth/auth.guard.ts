@@ -18,6 +18,7 @@ export class AuthGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest<Request>();
+    console.log(request.cookies)
 
     const token = request.cookies?.token;
   
@@ -30,6 +31,7 @@ export class AuthGuard implements CanActivate {
         id: string;
         role: UserRole;
         code: string;
+        name: string;
       }>(token, {
         secret: process.env.JWT_SECRET,
       });

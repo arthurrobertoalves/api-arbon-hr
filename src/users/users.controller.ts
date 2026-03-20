@@ -7,6 +7,8 @@ import {
   Param,
   Delete,
   UseGuards,
+  Req,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -27,18 +29,20 @@ export class UsersController {
   findAll() {
     return this.usersService.findAll();
   }
-  
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
-
-
+  @Get('me')
+  findMe() {
+    console.log('ENTROU AQUI');
+    return { ok: true };
+  }
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(id, updateUserDto);
   }
-
 
   @Delete(':id')
   remove(@Param('id') id: string) {

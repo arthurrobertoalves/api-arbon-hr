@@ -22,6 +22,12 @@ enum Sector {
   INDUSTRY
 }
 
+enum CompanyStatus {
+  ACTIVE
+  USED
+  EXPIRED
+}
+
 model Company {
   id   String @id @default(cuid())
   name String
@@ -29,6 +35,7 @@ model Company {
   email String
   phone String?
   site String?
+  status CompanyStatus @default(ACTIVE)
   sector Sector
   users        User[]
   participants Participant[]
@@ -39,6 +46,7 @@ model Company {
 model User {
   id   String   @id @default(cuid())
   code String   @unique
+  name String
   role UserRole @default(CUSTOMER)
 
   companyId String?

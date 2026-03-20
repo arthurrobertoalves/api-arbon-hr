@@ -1,22 +1,14 @@
 @baseUrl = http://localhost:3001
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbWxkc3ZsYzAwMDBla2lvZmVranYybDgiLCJyb2xlIjoiQURNSU4iLCJjb2RlIjoiQURNSU4xMjMiLCJpYXQiOjE3NzMzNzAyMzcsImV4cCI6MTc3MzQ1NjYzN30.PgBUJDNE_S8uBpRG1aHWQe8hTmKXAO3QU5_sIqoLby4
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbXd2YjlsbDAwMDBld2lvazA4Y2I3NzkiLCJyb2xlIjoiQURNSU4iLCJjb2RlIjoiQURNSU4xMjMiLCJuYW1lIjoiQXJ0aHVyIFJvYmVydG8iLCJpYXQiOjE3NzM5NzYxMzgsImV4cCI6MTc3NDA2MjUzOH0.p_uz426zmsa3hZM1mgj0ndI22hcvJBTxXv8S_xYgHkY
 
 
 ### Criar empresa
-POST {{baseUrl}}/users
+GET {{baseUrl}}/users
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Cookie: token={{token}}
 
-{
-  "code": "BABABA",
-  "role": "CUSTOMER",
-  "companyId": "cmmoaxtwn0000gcio5dt2pk71"
-}
 
 ### Listar empresas
-POST {{baseUrl}}/auth/login
+GET {{baseUrl}}/users/me
 Content-Type: application/json
-
-{
-  "code": "ADMIN123"
-}
+Cookie: token={{token}}
