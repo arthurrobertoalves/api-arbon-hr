@@ -14,6 +14,8 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
+import type { User } from 'generated/prisma/client';
+import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 
 @UseGuards(AuthGuard)
 @Controller('users')
@@ -29,16 +31,19 @@ export class UsersController {
   findAll() {
     return this.usersService.findAll();
   }
+  
+  @Get('me')
+  findMe(@CurrentUser() user: User) {
+    return this.usersService.findMe(user.id)
+  }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
-  @Get('me')
-  findMe() {
-    console.log('ENTROU AQUI');
-    return { ok: true };
-  }
+
+
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(id, updateUserDto);

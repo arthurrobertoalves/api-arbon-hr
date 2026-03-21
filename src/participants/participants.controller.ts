@@ -3,7 +3,7 @@ import { ParticipantsService } from './participants.service';
 import type { CreateParticipantDto } from './dto/create-participant.dto';
 import { UpdateParticipantDto } from './dto/update-participant.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
-import { Roles } from 'src/auth/roles.decorator';
+import { Roles } from 'src/common/decorators/roles.decorator';
 import { UserRole } from 'generated/prisma/enums';
 
 @Controller('participants')

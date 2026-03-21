@@ -14,7 +14,7 @@ import { UpdateCompanyDto } from './dto/update-company.dto'
 
 import { AuthGuard } from 'src/auth/auth.guard'
 import { RolesGuard } from 'src/auth/roles.guard'
-import { Roles } from 'src/auth/roles.decorator'
+import { Roles } from 'src/common/decorators/roles.decorator'
 
 import { UserRole } from 'generated/prisma/enums'
 

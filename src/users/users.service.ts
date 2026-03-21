@@ -60,22 +60,23 @@ export class UsersService {
     return user;
   }
 
-  async findMe(id: string) {
-    const user = await this.prisma.user.findUnique({
-      where: { id: id },
-      select: {
-        id: true,
-        name: true,
-        role: true
-      },
-    });
-
-    if (!user) {
-      throw new Error('Usuário não encontrado');
-    }
-
-    return user;
+ async findMe(id: string) {
+  const user = await this.prisma.user.findUnique({
+    where: { id:id },
+    select: {
+      id: true,
+      name: true,
+      role: true,
+    },
+  });
+ 
+  if (!user) {
+    throw new Error('Usuário não encontrado');
   }
+ 
+  return user;
+}
+ 
 
   async update(id: string, updateUserDto: UpdateUserDto) {
     const data: Partial<UpdateUserDto> = { ...updateUserDto };
