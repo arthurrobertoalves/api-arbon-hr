@@ -1,9 +1,9 @@
 @baseUrl = http://localhost:3001
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbXd2YjlsbDAwMDBld2lvazA4Y2I3NzkiLCJyb2xlIjoiQURNSU4iLCJjb2RlIjoiQURNSU4xMjMiLCJuYW1lIjoiQXJ0aHVyIFJvYmVydG8iLCJpYXQiOjE3NzQxMTQ5NDcsImV4cCI6MTc3NDIwMTM0N30.88OLIPbaNAHTUjY2VFxUaxIeXZegVuLD33oOzzWzEZc
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbXd2YjlsbDAwMDBld2lvazA4Y2I3NzkiLCJyb2xlIjoiQURNSU4iLCJjb2RlIjoiQURNSU4xMjMiLCJuYW1lIjoiQXJ0aHVyIFJvYmVydG8iLCJpYXQiOjE3NzQyMDc0NTgsImV4cCI6MTc3NDI5Mzg1OH0.bbOXghYvOqV6tkEHuQ7rxCHPCi0geLATKLXbgwOBb4g
 
 
 ### Criar empresa
-GET {{baseUrl}}/users/cmmwvb9ll0000ewiok08cb779
+GET {{baseUrl}}/participants/company/cmmwtko5z00006wiospq7nyj3
 Content-Type: application/json
 Cookie: token={{token}}
 

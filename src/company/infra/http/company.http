@@ -1,0 +1,44 @@
+@baseUrl = http://localhost:3001
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbXd2YjlsbDAwMDBld2lvazA4Y2I3NzkiLCJyb2xlIjoiQURNSU4iLCJjb2RlIjoiQURNSU4xMjMiLCJuYW1lIjoiQXJ0aHVyIFJvYmVydG8iLCJpYXQiOjE3NzQyMDc0NTgsImV4cCI6MTc3NDI5Mzg1OH0.bbOXghYvOqV6tkEHuQ7rxCHPCi0geLATKLXbgwOBb4g
+
+
+### Criar empresa
+POST  {{baseUrl}}/company
+Content-Type: application/json
+Cookie: token={{token}}
+
+{
+    "name": "Tese123",
+    "cnpj": "1",
+    "email": "contato123@email.com",
+    "phone": "+55 11 99999-9999",
+    "site": "https://nubank.com.br",
+    "sector": "FINANCE"
+}
+
+### Listar empresas
+GET {{baseUrl}}/company
+Content-Type: application/json
+Cookie: token={{token}}
+
+
+### Buscar empresa por id
+GET {{baseUrl}}/company/cmn26fkbi0000nvikodrryepl
+Cookie: token={{token}}
+
+
+### Atualizar empresa
+PATCH {{baseUrl}}/company/cmn26fkbi0000nvikodrryepl
+Cookie: token={{token}}
+Content-Type: application/json
+
+{
+  "name": "Nubank Atualizado",
+  "sector": "TECHNOLOGY"
+}
+
+
+### Deletar empresa
+DELETE {{baseUrl}}/company/cmn26fkbi0000nvikodrryepl
+Authorization: Bearer {{token}}
+Cookie: token={{token}}

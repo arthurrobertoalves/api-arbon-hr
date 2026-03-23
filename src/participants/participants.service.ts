@@ -1,8 +1,12 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import type { CreateParticipantDto } from './dto/create-participant.dto';
 import { UpdateParticipantDto } from './dto/update-participant.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { UpdateCompanyDto } from 'src/company/dto/update-company.dto';
+import { UpdateCompanyDto } from 'src/company/application/dto/update-company.dto';
 
 @Injectable()
 export class ParticipantsService {
@@ -50,6 +54,20 @@ export class ParticipantsService {
 
     return user;
   }
+
+  async findByCompany(companyId: string) {
+    return this.prisma.participant.findMany({
+      where: { companyId },
+      select: {
+        id: true,
+        name: true,
+        companyId: true,
+        createdAt: true,
+      },
+      orderBy: { createdAt: 'desc' },
+    });
+  }
+
   async update(id: string, updateParticipantDto: UpdateParticipantDto) {
     const data: Partial<UpdateParticipantDto> = { ...updateParticipantDto };
 
