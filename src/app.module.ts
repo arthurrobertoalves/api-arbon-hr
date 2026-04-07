@@ -5,6 +5,8 @@ import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { CompanyModule } from './company/company.module';
 import { ParticipantsModule } from './participants/participants.module';
+import { ImmersionModule } from './immersion/immersion.module';
+import { EvaluationModule } from './evaluation/evaluation.module';
 
 @Module({
   imports: [
@@ -19,6 +21,10 @@ import { ParticipantsModule } from './participants/participants.module';
     CompanyModule,
 
     ParticipantsModule,
+
+    ImmersionModule,
+
+    EvaluationModule,
   ],
   controllers: [],
   providers: [],

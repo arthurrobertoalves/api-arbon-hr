@@ -28,16 +28,30 @@ enum CompanyStatus {
   EXPIRED
 }
 
+enum ImmersionStatus {
+  OPEN
+  CLOSED
+  ARCHIVED
+}
+
+enum Recommendation {
+  HIRE // Avaliação qualitativa
+  CONSIDER
+  NOT_RECOMMENDED
+}
+
 model Company {
-  id   String @id @default(cuid())
-  name String
-  cnpj String 
-  email String
-  phone String?
-  site String?
+  id     String        @id @default(cuid())
+  name   String
+  cnpj   String
+  email  String
+  phone  String?
+  site   String?
   status CompanyStatus @default(ACTIVE)
   sector Sector
+
   users        User[]
+  immersions   Immersion[]
   participants Participant[]
 
   createdAt DateTime @default(now())
@@ -56,6 +70,19 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
+model Immersion {
+  id     String          @id @default(cuid())
+  name   String // ex: "2026.1", "2026.2"
+  status ImmersionStatus @default(OPEN)
+
+  companyId    String
+  company      Company       @relation(fields: [companyId], references: [id])
+  participants Participant[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Participant {
   id   String @id @default(cuid())
   name String
@@ -63,5 +90,32 @@ model Participant {
   companyId String
   company   Company @relation(fields: [companyId], references: [id])
 
+  immersionId String
+  immersion   Immersion   @relation(fields: [immersionId], references: [id], onDelete: Cascade)
+  evaluation  Evaluation?
+
   createdAt DateTime @default(now())
+}
+
+model Evaluation {
+  id String @id @default(cuid())
+
+  participantId String      @unique
+  participant   Participant @relation(fields: [participantId], references: [id])
+
+  leadershipScore    Int?
+  decisionScore      Int?
+  communicationScore Int?
+  adaptabilityScore  Int?
+  pressureScore      Int?
+  overallScore       Int?
+
+  strengths    String?
+  risks        String?
+  observations String?
+
+  recommendation Recommendation
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

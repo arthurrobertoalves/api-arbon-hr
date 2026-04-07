@@ -1,0 +1,66 @@
+### Variáveis
+@baseUrl = http://localhost:3001
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNtbXd2YjlsbDAwMDBld2lvazA4Y2I3NzkiLCJyb2xlIjoiQURNSU4iLCJjb2RlIjoiQURNSU4xMjMiLCJuYW1lIjoiQXJ0aHVyIFJvYmVydG8iLCJpYXQiOjE3NzQ1Nzc0MzAsImV4cCI6MTc3NDY2MzgzMH0.pQaixePL-BNkOvF9p4cp8sEdxIWR35-LcJuy2OjXzh0
+@companyId = SEU_COMPANY_ID_AQUI
+@immersionId = SEU_IMMERSION_ID_AQUI
+
+# ─── CREATE ───────────────────────────────────────────────────────────────────
+
+### Criar imersão
+POST {{baseUrl}}/immersions
+Content-Type: application/json
+Cookie: token={{token}}
+
+{
+  "name": "2026.1",
+  "companyId": "{{companyId}}"
+}
+
+# ─── READ ─────────────────────────────────────────────────────────────────────
+
+### Listar todas as imersões (ADMIN)
+GET {{baseUrl}}/immersions
+Content-Type: application/json
+Cookie: token={{token}}
+
+###
+
+### Listar imersões por empresa (ADMIN)
+GET {{baseUrl}}/immersions?companyId={{companyId}}
+Content-Type: application/json
+Cookie: token={{token}}
+
+###
+
+### Imersões da empresa do usuário logado (CUSTOMER)
+GET {{baseUrl}}/immersions/me
+Content-Type: application/json
+Cookie: token={{token}}
+
+###
+
+### Buscar imersão por id (com participantes e avaliações)
+GET {{baseUrl}}/immersions/{{immersionId}}
+Content-Type: application/json
+Cookie: token={{token}}
+
+# ─── UPDATE STATUS ────────────────────────────────────────────────────────────
+
+### Fechar imersão
+PATCH {{baseUrl}}/immersions/{{immersionId}}/close
+Content-Type: application/json
+Cookie: token={{token}}
+
+###
+
+### Arquivar imersão
+PATCH {{baseUrl}}/immersions/{{immersionId}}/archive
+Content-Type: application/json
+Cookie: token={{token}}
+
+# ─── DELETE ───────────────────────────────────────────────────────────────────
+
+### Deletar imersão
+DELETE {{baseUrl}}/immersions/cmn5jj8eb0000wsikxhlb6nc1
+Content-Type: application/json
+Cookie: token={{token}}

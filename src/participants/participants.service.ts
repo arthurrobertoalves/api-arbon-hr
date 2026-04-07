@@ -17,6 +17,7 @@ export class ParticipantsService {
         data: {
           name: createParticipantDto.name,
           companyId: createParticipantDto.companyId,
+          immersionId: createParticipantDto.immersionId
         },
       });
     } catch (error: any) {
